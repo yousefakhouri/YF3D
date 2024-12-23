@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YF3D</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Arial', sans-serif;
+        }
+      
+
+    
+        footer {
+            background-color: #1e1e1e;
+            padding: 20px 0;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+ 
+
+   
+    #video-section {
+        position: relative;
+        overflow: hidden;
+        height: 100vh; /* يجعل القسم بارتفاع الشاشة بالكامل */
+    }
+    #video-section video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -1;
+    }
+    #video-section .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center; /* توسيط النصوص أفقيًا */
+        z-index: 1; /* ضمان ظهور النص فوق الفيديو */
+    }
+    #video-section .content h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #fff;
+        background: linear-gradient(to right, #ffffff, #797979);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    #video-section .content p {
+        font-size: 1.2rem;
+        color: #fff;
+    }
+    #video-section .btn {
+        margin-top: 20px;
+        background-color: #7a7a7a;
+        color: #fff;
+        border: none;
+    }
+    #video-section .btn:hover {
+        background-color: #6d6d6d;
+    }
+
+   
+
+  
+    /* Navbar شفاف بالكامل */
+    .navbar {
+        background-color: transparent !important; /* شفافية كاملة */
+        border: none; /* إزالة الحواف */
+        padding: 0.5rem 1rem; /* تقليل الحواف */
+    }
+
+    /* تصميم الروابط */
+    .navbar .nav-link {
+        color: #fff !important; /* لون النص الأبيض */
+        transition: color 0.3s ease; /* تأثير عند التحويم */
+    }
+
+    .navbar .nav-link:hover {
+        color: #585858 !important; /* لون النص عند التحويم */
+    }
+
+    /* تصميم الشعار */
+    .navbar-brand img {
+        width: 120px; /* تصغير الشعار */
+    }
+
+ 
+
+    .card-container {
+        position: relative;
+        overflow: hidden;
+        border: none;
+        border-radius: 20px; /* زوايا منحنية للبطاقة */
+        transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                    box-shadow 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); /* انتقال ناعم */
+        background-color: #1e1e1e; /* خلفية البطاقة */
+        width: 100%; /* العرض الكامل داخل العمود */
+        aspect-ratio: 1; /* جعل البطاقة مربعة */
+    }
+
+    .card-container:hover {
+        transform: scale(1.08); /* تكبير البطاقة */
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* إضافة ظل ناعم */
+    }
+
+    .card-container img,
+    .card-container video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* تغطية المحتوى بالكامل */
+        border-radius: 20px; /* زوايا منحنية للمحتوى */
+        transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .card-container video.secondary,
+    .card-container img.secondary {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0; /* الصورة أو الفيديو الثانوي مخفي */
+        transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .card-container:hover .secondary {
+        opacity: 1; /* إظهار الصورة أو الفيديو الثانوي عند التمرير */
+    }
+
+    .card-content {
+        position: absolute;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7); /* خلفية شفافة للنص */
+        color: #fff;
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+    }
+
+
+
+
+
+
+
+
+    
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#"><img src="logo.png" alt="Logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<!-- Video Section -->
+<section id="video-section">
+    <video autoplay muted loop>
+        <source src="V.mov" type="video/mp4">
+    </video>
+    <div class="content">
+        <h1>The Art of Products Animation</h1>
+        <p>BY YOUSEF FAKHOURI</p>
+        <a href="#services" class="btn btn-lg">Learn More</a>
+    </div>
+</section>
+
+
+<!-- Services -->
+<section id="services" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Services</h2>
+        <div class="row g-4">
+            <!-- بطاقة 1 -->
+            <div class="col-md-4">
+                <div class="card-container">
+                    <img src="1.png" alt="Primary Image">
+                    <img src="2.png" alt="Secondary Image" class="secondary">
+                    <div class="card-content">
+                        <h5>3D Modeling</h5>
+                        <p>We can build anything in 3D.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- بطاقة 2 -->
+            <div class="col-md-4">
+                <div class="card-container">
+                    <video autoplay muted loop>
+                        <source src="face wash BS.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video autoplay muted loop class="secondary">
+                        <source src="face wash .mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="card-content">
+                        <h5>3D Animation</h5>
+                        <p>Professionalism in animation products</p>
+                    </div>
+                </div>
+            </div>
+            <!-- بطاقة 3 -->
+            <div class="col-md-4">
+                <div class="card-container">
+                    <video autoplay muted loop>
+                        <source src="V3.mov" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video autoplay muted loop class="secondary">
+                        <source src="V3.mov" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="card-content">
+                        <h5>High precision</h5>
+                        <p>High-quality advertising videos.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- بطاقة 4 -->
+            <div class="col-md-4">
+                <div class="card-container">
+                    <img src="12.png" alt="Primary Image">
+                    <img src="11.png" alt="Secondary Image" class="secondary">
+                    <div class="card-content">
+                        <h5>Product Design</h5>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <!-- بطاقة 5 -->
+            <div class="col-md-4">
+                <div class="card-container">
+                    <video autoplay muted loop>
+                        <source src="fireBS.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video autoplay muted loop class="secondary">
+                        <source src="fire.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="card-content">
+                        <h5>Visual effects</h5>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <!-- بطاقة 6 -->
+            <div class="col-md-4">
+                <div class="card-container">
+                    <img src="nolight.png" alt="Primary Image">
+                    <img src="light.png" alt="Secondary Image" class="secondary">
+                    <div class="card-content">
+                        <h5>Lighting Effects</h5>
+                        <p>Mastering the art of illumination.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer -->
+<footer class="text-center text-white">
+    <div class="container">
+        <p>&copy; 2024 YOUSEF FAKHOURI. All Rights Reserved.</p>
+        <a href="https://www.instagram.com/yousefakhouri" class="text-decoration-none"><i class="fab fa-instagram"></i> Follow us on Instagram</a>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
